@@ -37,6 +37,8 @@ pyodide-playground
     # TODO: print this data uri to canvas
     print("data:image/jpeg;base64" + base64_encoded_spectrogram.decode('utf-8'))
     ```
+  - [Matplotlib backend in a web worker · Issue #6 · pyodide/matplotlib-pyodide](https://github.com/pyodide/matplotlib-pyodide/issues/6)
+  - [Pyolite - Matplotlib: Setup inline backend by default by martinRenou · Pull Request #911 · jupyterlite/jupyterlite](https://github.com/jupyterlite/jupyterlite/pull/911)
 ### Snippets
 ```python
 from js import document
