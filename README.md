@@ -3,7 +3,7 @@ pyodide-playground
 - [Pyodide — Version 0.24.1](https://pyodide.org/en/stable/index.html)
 
 ### Notes
-- matplotlib needs this workaround to run on web workers
+- matplotlib needs this workaround to run on web workers (see [pyodide/matplotlib-pyodide](https://github.com/pyodide/matplotlib-pyodide))
   - ```python
     from matplotlib import pyplot as plt
     import io
