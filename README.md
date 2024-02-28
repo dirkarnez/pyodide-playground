@@ -39,6 +39,7 @@ pyodide-playground
     ```
   - [Matplotlib backend in a web worker · Issue #6 · pyodide/matplotlib-pyodide](https://github.com/pyodide/matplotlib-pyodide/issues/6)
   - [Pyolite - Matplotlib: Setup inline backend by default by martinRenou · Pull Request #911 · jupyterlite/jupyterlite](https://github.com/jupyterlite/jupyterlite/pull/911)
+  - [HTML5 <canvas> based renderer for Matplotlib in Pyodide | Pyodide blog](https://blog.pyodide.org/posts/canvas-renderer-matplotlib-in-pyodide/)
 ### Snippets
 ```python
 from js import document
