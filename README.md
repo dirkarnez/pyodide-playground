@@ -21,7 +21,6 @@ pyodide-playground
     
     
     js.document = Dud()
-    
     # Create a plot
     x1, y1 = [-1, 12], [1, 4]
     plt.plot(x1, y1)
@@ -34,7 +33,15 @@ pyodide-playground
     bytes_io.seek(0)
     
     base64_encoded_spectrogram = base64.b64encode(bytes_io.read())
-
+    
     # TODO: print this data uri to canvas
-    print(base64_encoded_spectrogram.decode('utf-8'))
+    print("data:image/jpeg;base64" + base64_encoded_spectrogram.decode('utf-8'))
     ```
+### Snippets
+```python
+from js import document
+canvas_element = document.getElementById("canvas")
+ctx = canvas_element.getContext("2d")
+
+
+```
