@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
   <head>
       <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
@@ -16,6 +16,85 @@
         pyodide.runPython("print(1 + 2 + 4 )");
       }
       main();
+    </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+      <base href="/pyodide-playground/">
+      <title>pyodide-playground</title>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+      <style>
+          textarea {
+              width: 100%;
+          }
+      </style>
+  </head>
+  <body>
+    <a href="https://github.com/dirkarnez/pyodide-playground" target="_blank">dirkarnez/pyodide-playground</a><br>
+      Pyodide test page <br>
+      Open your browser console to see Pyodide output<br>
+      <textarea id="textarea-input" rows="10" placeholder="Once upon a time..."></textarea>
+    <br>
+    <button id="btn-submit">Submit</button>
+    <br>
+    <div id="console-output"></div>
+    <pre><code id="my-notes"></code></pre>
+    <script type="text/javascript">
+      const code = `import numpy as np
+print(np.convolve(np.array([1, 2, 3]), np.array([4, 5, 6])))
+`;
+        const consoleOutput = document.getElementById("console-output");
+     	  const textareaInput = document.getElementById("textarea-input");
+          
+        textareaInput.value = code;
+        const getPyodidePromise = (() => {
+          let pyodide;
+            
+          return () => new Promise(res => {
+            if (!!pyodide) {
+                console.log("already");
+                res(pyodide);
+            } else {
+              loadPyodide({
+                fullStdLib: true,
+                stdout: msg => consoleOutput.innerHTML += `${msg}<br>`,
+              })
+              .then(async _pyodide => {
+                    console.log(`just now ${!!pyodide ? "overriding..." : "new"}`);
+                    pyodide = _pyodide;
+                    return await pyodide.loadPackage(["numpy", "micropip"]);
+              })
+              .then(async () => {
+                    const micropip = pyodide.pyimport("micropip");
+                    await micropip.install(["pandas"]);
+                    res(pyodide);
+              });
+            }
+          });
+        })();
+
+        const btnSubmit = document.getElementById("btn-submit");
+        btnSubmit.addEventListener("click", function() {
+            btnSubmit.innerText = `Submitting...`;
+            btnSubmit.disabled = true;
+            consoleOutput.innerHTML = "";
+            getPyodidePromise()
+            .then(pyodide => {
+                  btnSubmit.innerText = `Submitted`;
+                  pyodide.runPython(textareaInput.value);
+            })
+            .catch(e => {
+                  btnSubmit.innerText = `${e}`;
+            })
+            .finally(() => {
+                  btnSubmit.disabled = false;
+            });
+        });
     </script>
   </body>
 </html>
