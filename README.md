@@ -1,5 +1,5 @@
-pyodide-playground
-==================
+[pyodide-playground](https://dirkarnez.github.io/pyodide-playground)
+====================================================================
 - [Pyodide — Version 0.24.1](https://pyodide.org/en/stable/index.html)
 
 ### Notes
