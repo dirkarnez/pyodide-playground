@@ -32,6 +32,10 @@
           textarea {
               width: 100%;
           }
+
+          pre .console {
+            margin: 0;
+          }
       </style>
   </head>
   <body>
@@ -63,7 +67,7 @@ print(pd.DataFrame([['book_pk_1'],['book_pk_2'],['book_pk_3']],columns=["ABC"]))
             } else {
               loadPyodide({
                 fullStdLib: true,
-                stdout: msg => consoleOutput.innerHTML += `<pre>${msg}</pre><br>`,
+                stdout: msg => consoleOutput.innerHTML += `<pre class="console">${msg}</pre><br>`,
               })
               .then(async _pyodide => {
                     console.log(`just now ${!!pyodide ? "overriding..." : "new"}`);
