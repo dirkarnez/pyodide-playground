@@ -33,7 +33,7 @@
               width: 100%;
           }
 
-          pre .console {
+          pre.console {
             margin: 0;
           }
       </style>
@@ -67,7 +67,7 @@ print(pd.DataFrame([['book_pk_1'],['book_pk_2'],['book_pk_3']],columns=["ABC"]))
             } else {
               loadPyodide({
                 fullStdLib: true,
-                stdout: msg => consoleOutput.innerHTML += `<pre class="console">${msg}</pre><br>`,
+                stdout: msg => consoleOutput.innerHTML += `<pre class="console">${msg}</pre>`,
               })
               .then(async _pyodide => {
                     console.log(`just now ${!!pyodide ? "overriding..." : "new"}`);
