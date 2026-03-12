@@ -45,8 +45,9 @@
     <div id="console-output"></div>
     <pre><code id="my-notes"></code></pre>
     <script type="text/javascript">
-      const code = `import numpy as np
-print(np.convolve(np.array([1, 2, 3]), np.array([4, 5, 6])))
+      const code = `import pandas as pd
+
+print(pd.DataFrame([['book_pk_1'],['book_pk_2'],['book_pk_3']],columns=["ABC"]))
 `;
         const consoleOutput = document.getElementById("console-output");
      	  const textareaInput = document.getElementById("textarea-input");
@@ -62,7 +63,7 @@ print(np.convolve(np.array([1, 2, 3]), np.array([4, 5, 6])))
             } else {
               loadPyodide({
                 fullStdLib: true,
-                stdout: msg => consoleOutput.innerHTML += `${msg}<br>`,
+                stdout: msg => consoleOutput.innerHTML += `<pre>${msg}</pre><br>`,
               })
               .then(async _pyodide => {
                     console.log(`just now ${!!pyodide ? "overriding..." : "new"}`);
